@@ -14,7 +14,7 @@
     }
   },
   "host" : "deepalucas.github.io",
-  "basePath" : "/api/v1",
+  "basePath" : "/",
   "tags" : [ {
     "name" : "summary",
     "description" : "Latest data"
