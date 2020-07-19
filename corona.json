@@ -13,8 +13,8 @@
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host" : "api.quarantine.country",
-  "basePath" : "/api/v1",
+  "host" : "deepalucas.github.io",
+  "basePath" : ".",
   "tags" : [ {
     "name" : "summary",
     "description" : "Latest data"
