@@ -24,7 +24,7 @@
   } ],
   "schemes" : [ "https", "http" ],
   "paths" : {
-    "/summary/latest" : {
+    "/summary/latest/" : {
       "get" : {
         "tags" : [ "summary" ],
         "summary" : "Get latest coronavirus situation report",
