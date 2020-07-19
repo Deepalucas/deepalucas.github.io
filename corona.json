@@ -1,0 +1,350 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Coronavirus API with free COVID-19 live updates. The best free coronavirus API and COVID-19 update source. Programmatically access live corona virus updates for statistics with historical data, maps, charts, graphs. COVID-19 API and corona virus live updates.",
+    "version" : "1.0",
+    "title" : "Coronavirus API",
+    "termsOfService" : "https://quarantine.country/coronavirus/api/privacy.html",
+    "contact" : {
+      "email" : "api+covid19@h7.org"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "api.quarantine.country",
+  "basePath" : "/api/v1",
+  "tags" : [ {
+    "name" : "summary",
+    "description" : "Latest data"
+  }, {
+    "name" : "spot",
+    "description" : "Chart data"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/summary/latest" : {
+      "get" : {
+        "tags" : [ "summary" ],
+        "summary" : "Get latest coronavirus situation report",
+        "description" : "",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date of the report",
+          "required" : false,
+          "type" : "string",
+          "default" : "today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ReportResponse"
+            }
+          }
+        }
+      }
+    },
+    "/summary/region" : {
+      "get" : {
+        "tags" : [ "summary" ],
+        "summary" : "Resolve report for region",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "region",
+          "in" : "query",
+          "description" : "Region short name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date of the report",
+          "required" : false,
+          "type" : "string",
+          "default" : "today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ReportResponse"
+            }
+          },
+          "404" : {
+            "description" : "Region does not exist"
+          }
+        }
+      }
+    },
+    "/spots/day" : {
+      "get" : {
+        "tags" : [ "spot" ],
+        "summary" : "Resolve change chart by day",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "region",
+          "in" : "query",
+          "description" : "Region short name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date to query spots on",
+          "required" : false,
+          "type" : "string",
+          "default" : "Today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/SpotsResponse"
+            }
+          },
+          "404" : {
+            "description" : "Unknown region"
+          }
+        }
+      }
+    },
+    "/spots/week" : {
+      "get" : {
+        "tags" : [ "spot" ],
+        "summary" : "Resolve change chart for week",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "region",
+          "in" : "query",
+          "description" : "Region short name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date to query spots on",
+          "required" : false,
+          "type" : "string",
+          "default" : "Today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/SpotsResponse"
+            }
+          },
+          "404" : {
+            "description" : "Unknown region"
+          }
+        }
+      }
+    },
+    "/spots/month" : {
+      "get" : {
+        "tags" : [ "spot" ],
+        "summary" : "Resolve change chart for week",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "region",
+          "in" : "query",
+          "description" : "Region short name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date to query spots on",
+          "required" : false,
+          "type" : "string",
+          "default" : "Today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/SpotsResponse"
+            }
+          },
+          "404" : {
+            "description" : "Unknown region"
+          }
+        }
+      }
+    },
+    "/spots/year" : {
+      "get" : {
+        "tags" : [ "spot" ],
+        "summary" : "Resolve change chart for week",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "region",
+          "in" : "query",
+          "description" : "Region short name",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date to query spots on",
+          "required" : false,
+          "type" : "string",
+          "default" : "Today"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/SpotsResponse"
+            }
+          },
+          "404" : {
+            "description" : "Unknown region"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ReportResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "integer",
+          "format" : "int8"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "stack", "collection", "pagination" ]
+        },
+        "data" : {
+          "$ref" : "#/definitions/ReportResponse_data"
+        }
+      }
+    },
+    "SpotsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "integer",
+          "format" : "int8"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "stack", "collection", "pagination" ]
+        },
+        "data" : {
+          "type" : "object",
+          "example" : {
+            "2020-04-09 12:40:00" : {
+              "total_cases" : 82883,
+              "deaths" : 3339,
+              "recovered" : 77678,
+              "death_ratio" : 0.040285703944113994,
+              "recovery_ratio" : 0.937200632216498
+            },
+            "2020-04-09 12:20:00" : {
+              "total_cases" : 82883,
+              "deaths" : 3339,
+              "recovered" : 77678,
+              "death_ratio" : 0.040285703944113994,
+              "recovery_ratio" : 0.937200632216498
+            }
+          },
+          "additionalProperties" : {
+            "$ref" : "#/definitions/Report"
+          }
+        }
+      }
+    },
+    "Report" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "title" : "Region name"
+        },
+        "total_cases" : {
+          "type" : "integer",
+          "title" : "Total registered cases"
+        },
+        "active_cases" : {
+          "type" : "integer",
+          "title" : "Active cases number"
+        },
+        "deaths" : {
+          "type" : "integer",
+          "title" : "Deaths number"
+        },
+        "recovered\"" : {
+          "type" : "integer",
+          "title" : "Recovered cases number"
+        },
+        "death_ratio" : {
+          "type" : "number",
+          "description" : "Dead / Total cases",
+          "title" : "Death ratio"
+        },
+        "recovery_ratio" : {
+          "type" : "number",
+          "description" : "Recovered / Total cases",
+          "title" : "Recovery ratio"
+        },
+        "change" : {
+          "title" : "Change over previous day",
+          "$ref" : "#/definitions/Report"
+        }
+      }
+    },
+    "ReportResponse_data" : {
+      "type" : "object",
+      "properties" : {
+        "summary" : {
+          "description" : "Summary data for date",
+          "$ref" : "#/definitions/Report"
+        },
+        "change" : {
+          "description" : "Change over previous day",
+          "$ref" : "#/definitions/Report"
+        },
+        "generated_on" : {
+          "type" : "integer",
+          "description" : "Timestamp report been updated at"
+        },
+        "regions" : {
+          "type" : "object",
+          "example" : {
+            "switzerland" : {
+              "name" : "switzerland",
+              "total_cases" : 23280,
+              "active_cases" : 12585,
+              "deaths" : 895,
+              "recovered" : 9800,
+              "death_ratio" : 0.038445017182130586,
+              "recovery_ratio" : 0.4209621993127148,
+              "change" : {
+                "total_cases" : 1027,
+                "active_cases" : -143,
+                "deaths" : 74,
+                "recovered" : 1096,
+                "death_ratio" : 0.0015511152363255273,
+                "recovery_ratio" : 0.02982392582150012
+              }
+            }
+          },
+          "additionalProperties" : {
+            "$ref" : "#/definitions/Report"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  }
+}
